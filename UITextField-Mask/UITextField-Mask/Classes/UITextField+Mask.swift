@@ -21,6 +21,16 @@ public extension UITextField {
         case none
         
         /**
+         Represents a integer number: **1234**
+         */
+        case number
+        
+        /**
+         Represents a decimal number: **1.234,56**
+         */
+        case decimalNumber
+        
+        /**
          Represents a mask for brazilian zip code: **00000-000**
          */
         case zipCode
@@ -79,6 +89,12 @@ public extension UITextField {
             switch self {
                 case .none:
                     return ""
+                
+                case .number:
+                    return "#"
+                
+                case .decimalNumber:
+                    return "#.###,##"
                 
                 case .zipCode:
                     return "00000-000"

@@ -16,6 +16,11 @@ public extension UITextField {
     private static var masks: [UITextField: (UITextField) -> Mask] = [:]
     
     /**
+     Property that holds last valid text for multiple UITextField instances.
+     */
+    private static var last: [UITextField: String] = [:]
+    
+    /**
      Getter for the mask of the current text field
      */
     private var maskGetter: ((UITextField) -> Mask)? {
@@ -24,6 +29,18 @@ public extension UITextField {
         }
         set(value) {
             UITextField.masks[self] = value
+        }
+    }
+    
+    /**
+     Last valid text of the text field
+     */
+    private var lastText: String? {
+        get {
+            return UITextField.last[self]
+        }
+        set(value) {
+            UITextField.last[self] = value
         }
     }
     
@@ -87,11 +104,45 @@ public extension UITextField {
     
     @objc private func valueDidChangeAgain() {
         guard let text = self.text, !text.isEmpty else {
+            lastText = ""
             return
         }
         
         guard let mask = maskGetter?(self) else {
             return
+        }
+        
+        switch mask {
+            case .number:
+                if !hasOnlyNumber(in: text) {
+                    self.text = lastText
+                }
+                
+                lastText = self.text
+                return
+            
+            case .decimalNumber:
+                var number = text.replacingOccurrences(of: ",", with: "")
+                number = number.replacingOccurrences(of: ".", with: "")
+                
+                if !hasOnlyNumber(in: number) {
+                    self.text = lastText
+                }
+                else {
+                    let decimal: Decimal = Decimal(string: number)! / 100
+                    
+                    let formatter = NumberFormatter()
+                    formatter.numberStyle = .decimal
+                    formatter.groupingSeparator = "."
+                    formatter.decimalSeparator = ","
+                    
+                    self.text = formatter.string(from: NSDecimalNumber(decimal: decimal))
+                }
+                
+                lastText = self.text
+                return
+            
+            default: break
         }
         
         let maskFormat = mask.format
@@ -114,6 +165,7 @@ public extension UITextField {
                 
                 case .some(let someOption):
                     if hasSpecialCharacters(in: "\(trimmed)") {
+                        maskedText = lastText ?? ""
                         break maskIndexLoop
                     }
                     
@@ -122,6 +174,7 @@ public extension UITextField {
                     switch someOption {
                         case .numbers:
                             if !isNumber {
+                                maskedText = lastText ?? ""
                                 break maskIndexLoop
                             }
                         
@@ -130,6 +183,7 @@ public extension UITextField {
                         
                         case .letters:
                             if isNumber {
+                                maskedText = lastText ?? ""
                                 break maskIndexLoop
                             }
                     }
@@ -142,6 +196,7 @@ public extension UITextField {
         }
         
         self.text = maskedText
+        lastText = self.text
     }
     
     private func hasSpecialCharacters(in string: String) -> Bool {
@@ -150,5 +205,9 @@ public extension UITextField {
         }
         
         return false
+    }
+    
+    private func hasOnlyNumber(in string: String) -> Bool {
+        return string.trimmingCharacters(in: .decimalDigits).isEmpty
     }
 }
