@@ -8,41 +8,71 @@
 
 import UIKit
 
+private extension UITextField {
+    
+    subscript(key: String) -> Any? {
+        get {
+            return UITextField.properties[self]?[key]
+        }
+        set(value) {
+            if UITextField.properties[self] == nil {
+                UITextField.properties[self] = [:]
+            }
+            
+            UITextField.properties[self]![key] = value
+        }
+    }
+    
+    /**
+     Property that holds values for multiple UITextField instances.
+     */
+    static var properties: [UITextField: [String: Any]] = [:]
+}
+
+//MARK: - Properties
+
 public extension UITextField {
     
     /**
-     Property that holds mask string for multiple UITextField instances.
-     */
-    private static var masks: [UITextField: (UITextField) -> Mask] = [:]
-    
-    /**
-     Property that holds last valid text for multiple UITextField instances.
-     */
-    private static var last: [UITextField: String] = [:]
-    
-    /**
-     Getter for the mask of the current text field
+     Getter for the mask of the text field
      */
     private var maskGetter: ((UITextField) -> Mask)? {
         get {
-            return UITextField.masks[self]
+            return self["maskGetter"] as? (UITextField) -> Mask
         }
         set(value) {
-            UITextField.masks[self] = value
+            self["maskGetter"] = value
         }
     }
     
     /**
      Last valid text of the text field
      */
-    private var lastText: String? {
+    private var lastText: String {
         get {
-            return UITextField.last[self]
+            return self["lastText"] as? String ?? ""
         }
         set(value) {
-            UITextField.last[self] = value
+            self["lastText"] = value
         }
     }
+    
+    /**
+     Unmasked text value according to the current mask format
+     */
+    private(set) var unmaskedText: String {
+        get {
+            return self["unmaskedText"] as? String ?? ""
+        }
+        set(value) {
+            self["unmaskedText"] = value
+        }
+    }
+}
+
+//MARK: - Public methods
+
+public extension UITextField {
     
     /**
      Apply a specific mask format
@@ -51,7 +81,7 @@ public extension UITextField {
      */
     public func maskField(with mask: Mask) {
         maskGetter = { _ in mask }
-        addTarget(self, action: #selector(valueDidChangeAgain), for: .editingChanged)
+        addTarget(self, action: #selector(valueDidChange), for: .editingChanged)
     }
     
     /**
@@ -61,20 +91,7 @@ public extension UITextField {
      */
     public func maskFieldDynamically(handler: @escaping (UITextField) -> Mask) {
         maskGetter = handler
-        addTarget(self, action: #selector(valueDidChangeAgain), for: .editingChanged)
-    }
-    
-    /**
-     Returns the unmasked text value according to the current mask format
-     
-     - Returns: The unmasked text value
-     */
-    public func unmaskedText() -> String {
-        if let mask = maskGetter?(self) {
-            return unmaskedText(from: mask)
-        }
-        
-        return unmaskedText(from: .none)
+        addTarget(self, action: #selector(valueDidChange), for: .editingChanged)
     }
     
     /**
@@ -86,117 +103,121 @@ public extension UITextField {
     public func unmaskedText(from mask: Mask) -> String {
         var text = self.text ?? ""
         var format = mask.format
-        
+
         MaskSpecialChars.rawValues.forEach { (value) in
             format = format.replacingOccurrences(of: "\(value)", with: "")
         }
-        
+
         var currentIndex = format.startIndex
         let lastIndex = format.endIndex
-        
+
         while currentIndex != lastIndex {
             text = text.replacingOccurrences(of: "\(format[currentIndex])", with: "")
             currentIndex = format.index(after: currentIndex)
         }
-        
+
         return text
     }
+}
+
+//MARK: - Private methods
+
+private extension UITextField {
     
-    @objc private func valueDidChangeAgain() {
-        guard let text = self.text, !text.isEmpty else {
-            lastText = ""
-            return
-        }
-        
+    @objc private func valueDidChange() {
         guard let mask = maskGetter?(self) else {
             return
         }
         
         switch mask {
             case .number:
-                if !hasOnlyNumber(in: text) {
-                    self.text = lastText
-                }
-                
-                lastText = self.text
-                return
+                text = applyMaskForNumber()
+                unmaskedText = text!
             
             case .decimalNumber:
-                var number = text.replacingOccurrences(of: ",", with: "")
-                number = number.replacingOccurrences(of: ".", with: "")
-                
-                if !hasOnlyNumber(in: number) {
-                    self.text = lastText
-                }
-                else {
-                    let decimal: Decimal = Decimal(string: number)! / 100
-                    
-                    let formatter = NumberFormatter()
-                    formatter.numberStyle = .decimal
-                    formatter.groupingSeparator = "."
-                    formatter.decimalSeparator = ","
-                    
-                    self.text = formatter.string(from: NSDecimalNumber(decimal: decimal))
-                }
-                
-                lastText = self.text
-                return
+                text = applyMaskForDecimalNumber()
+                unmaskedText = text!
+                unmaskedText = unmaskedText.replacingOccurrences(of: ",", with: "")
+                unmaskedText = unmaskedText.replacingOccurrences(of: ".", with: "")
             
-            default: break
+            default:
+                text = applyMask(mask)
+                unmaskedText = unmaskedText(from: mask)
         }
         
-        let maskFormat = mask.format
+        lastText = text!
+    }
+    
+    private func applyMaskForNumber() -> String {
+        guard let text = self.text else {
+            return ""
+        }
         
-        var maskedText = ""
+        if hasOnlyNumber(in: text) {
+            return text
+        }
+        
+        return lastText
+    }
+    
+    private func applyMaskForDecimalNumber() -> String {
+        guard var text = self.text else {
+            return ""
+        }
+        
+        text = text.replacingOccurrences(of: ",", with: "")
+        text = text.replacingOccurrences(of: ".", with: "")
+        
+        guard hasOnlyNumber(in: text), let decimal = Decimal(string: text) else {
+            return lastText
+        }
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = "."
+        formatter.decimalSeparator = ","
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+
+        return formatter.string(from: NSDecimalNumber(decimal: decimal / 100))!
+    }
+    
+    private func applyMask(_ mask: Mask) -> String {
+        let maskFormat = mask.format
+        var masked = ""
         let trimmed = unmaskedText(from: mask)
         
         var currentMaskIndex = maskFormat.startIndex
         var currentTrimmedIndex = trimmed.startIndex
         
-        maskIndexLoop: while currentMaskIndex != maskFormat.endIndex {
-            
+        while currentMaskIndex != maskFormat.endIndex {
             if currentTrimmedIndex == trimmed.endIndex {
-                break maskIndexLoop
+                break
             }
             
             switch MaskSpecialChars(rawValue: maskFormat[currentMaskIndex]) {
                 case .none:
-                    maskedText = "\(maskedText)\(maskFormat[currentMaskIndex])"
+                    masked = "\(masked)\(maskFormat[currentMaskIndex])"
                 
-                case .some(let someOption):
-                    if hasSpecialCharacters(in: "\(trimmed)") {
-                        maskedText = lastText ?? ""
-                        break maskIndexLoop
+                case .some(let option):
+                    if hasSpecialCharacters(in: trimmed) {
+                        return lastText
                     }
                     
-                    let isNumber = UInt("\(trimmed)") != nil
+                    let isNumber = UInt(trimmed) != nil
                     
-                    switch someOption {
-                        case .numbers:
-                            if !isNumber {
-                                maskedText = lastText ?? ""
-                                break maskIndexLoop
-                            }
-                        
-                        case .numbersAndLetters:
-                            break
-                        
-                        case .letters:
-                            if isNumber {
-                                maskedText = lastText ?? ""
-                                break maskIndexLoop
-                            }
+                    if option == .numbers && !isNumber || option == .letters && isNumber {
+                        return lastText
                     }
                     
-                    maskedText = "\(maskedText)\(trimmed[currentTrimmedIndex])"
+                    masked = "\(masked)\(trimmed[currentTrimmedIndex])"
                     currentTrimmedIndex = trimmed.index(after: currentTrimmedIndex)
-            }
+                }
             
             currentMaskIndex = maskFormat.index(after: currentMaskIndex)
         }
         
-        self.text = maskedText
-        lastText = self.text
+        return masked
     }
     
     private func hasSpecialCharacters(in string: String) -> Bool {

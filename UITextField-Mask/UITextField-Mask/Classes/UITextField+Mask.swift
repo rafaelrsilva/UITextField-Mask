@@ -87,14 +87,10 @@ public extension UITextField {
         
         public var format: String {
             switch self {
-                case .none:
+                case .none,
+                     .number,
+                     .decimalNumber:
                     return ""
-                
-                case .number:
-                    return "#"
-                
-                case .decimalNumber:
-                    return "#.###,##"
                 
                 case .zipCode:
                     return "00000-000"
