@@ -12,21 +12,23 @@ private extension UITextField {
     
     subscript(key: String) -> Any? {
         get {
-            return UITextField.properties[self]?[key]
+            return UITextField.properties[NSValue(nonretainedObject: self)]?[key]
         }
         set(value) {
-            if UITextField.properties[self] == nil {
-                UITextField.properties[self] = [:]
+            let nsValue = NSValue(nonretainedObject: self)
+            
+            if UITextField.properties[nsValue] == nil {
+                UITextField.properties[nsValue] = [:]
             }
             
-            UITextField.properties[self]![key] = value
+            UITextField.properties[nsValue]![key] = value
         }
     }
     
     /**
      Property that holds values for multiple UITextField instances.
      */
-    static var properties: [UITextField: [String: Any]] = [:]
+    static var properties: [NSValue: [String: Any]] = [:]
 }
 
 //MARK: - Properties
@@ -68,6 +70,18 @@ public extension UITextField {
             self["unmaskedText"] = value
         }
     }
+    
+    /**
+     Object that observes text field `text` property changes
+     */
+    private var observer: Observer? {
+        get {
+            return self["observer"] as? Observer
+        }
+        set(value) {
+            self["observer"] = value
+        }
+    }
 }
 
 //MARK: - Public methods
@@ -81,7 +95,7 @@ public extension UITextField {
      */
     public func maskField(with mask: Mask) {
         maskGetter = { _ in mask }
-        addTarget(self, action: #selector(valueDidChange), for: .editingChanged)
+        addObservers()
     }
     
     /**
@@ -91,6 +105,17 @@ public extension UITextField {
      */
     public func maskFieldDynamically(handler: @escaping (UITextField) -> Mask) {
         maskGetter = handler
+        addObservers()
+    }
+    
+    private func addObservers() {
+        if observer == nil {
+            observer = Observer { [weak self] in
+                self?.valueDidChange()
+            }
+        }
+        
+        addObserver(observer!, forKeyPath: "text", options: [.new, .initial], context: nil)
         addTarget(self, action: #selector(valueDidChange), for: .editingChanged)
     }
     
@@ -129,6 +154,8 @@ private extension UITextField {
             return
         }
         
+        observer?.stopObserving()
+        
         switch mask {
             case .number:
                 text = applyMaskForNumber()
@@ -146,6 +173,7 @@ private extension UITextField {
         }
         
         lastText = text!
+        observer?.startObserving()
     }
     
     private func applyMaskForNumber() -> String {
