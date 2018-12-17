@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D70BEFF21C82DD8001E39FB /* UITextField+Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D70BEFE21C82DD8001E39FB /* UITextField+Observer.swift */; };
 		9D9BB718219BA03D00615AC5 /* UITextField_Mask.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D9BB716219BA03D00615AC5 /* UITextField_Mask.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D9BB720219BA10800615AC5 /* UITextField+Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9BB71F219BA10800615AC5 /* UITextField+Mask.swift */; };
 		9D9BB722219BA19700615AC5 /* UITextField+MaskSpecialChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9BB721219BA19700615AC5 /* UITextField+MaskSpecialChars.swift */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D70BEFE21C82DD8001E39FB /* UITextField+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Observer.swift"; sourceTree = "<group>"; };
 		9D9BB713219BA03D00615AC5 /* UITextField_Mask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UITextField_Mask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D9BB716219BA03D00615AC5 /* UITextField_Mask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UITextField_Mask.h; sourceTree = "<group>"; };
 		9D9BB717219BA03D00615AC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				9D9BB71F219BA10800615AC5 /* UITextField+Mask.swift */,
 				9D9BB723219BA1AF00615AC5 /* UITextField+Maskeable.swift */,
 				9D9BB721219BA19700615AC5 /* UITextField+MaskSpecialChars.swift */,
+				9D70BEFE21C82DD8001E39FB /* UITextField+Observer.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				9D9BB720219BA10800615AC5 /* UITextField+Mask.swift in Sources */,
 				9D9BB724219BA1AF00615AC5 /* UITextField+Maskeable.swift in Sources */,
 				9D9BB722219BA19700615AC5 /* UITextField+MaskSpecialChars.swift in Sources */,
+				9D70BEFF21C82DD8001E39FB /* UITextField+Observer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
