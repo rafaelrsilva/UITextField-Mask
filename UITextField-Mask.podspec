@@ -7,8 +7,8 @@ Pod::Spec.new do |s|
   s.homepage      = "https://github.com/rafaelrsilva/UITextField-Mask"
   s.license       = "MIT"
   s.author        = { "Rafael Ribeiro da Silva" => "eu@rafaelrsilva.com" }
-  s.platform      = :ios, "11.0"
-  s.swift_version = "4.2"
+  s.platform      = :ios, "8.0",
+  s.swift_version = "5.0"
   s.source        = { :git => "https://github.com/rafaelrsilva/UITextField-Mask.git", :tag => "0.0.3" }
   s.source_files  = "UITextField-Mask/**/*.{h,m,swift}"
   
