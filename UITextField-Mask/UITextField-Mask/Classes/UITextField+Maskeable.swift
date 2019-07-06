@@ -93,7 +93,7 @@ public extension UITextField {
      
      - Parameter mask: Mask to apply
      */
-    public func maskField(with mask: Mask) {
+    func maskField(with mask: Mask) {
         maskGetter = { _ in mask }
         addObservers()
     }
@@ -103,7 +103,7 @@ public extension UITextField {
      
      - Parameter handler: Handler to get mask format
      */
-    public func maskFieldDynamically(handler: @escaping (UITextField) -> Mask) {
+    func maskFieldDynamically(handler: @escaping (UITextField) -> Mask) {
         maskGetter = handler
         addObservers()
     }
@@ -125,7 +125,7 @@ public extension UITextField {
      - Parameter mask: Mask to be used to unmask text value
      - Returns: The unmasked text value
      */
-    public func unmaskedText(from mask: Mask) -> String {
+    func unmaskedText(from mask: Mask) -> String {
         var text = self.text ?? ""
         var format = mask.format
 
