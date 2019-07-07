@@ -12,7 +12,32 @@
 		9D9BB720219BA10800615AC5 /* UITextField+Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9BB71F219BA10800615AC5 /* UITextField+Mask.swift */; };
 		9D9BB722219BA19700615AC5 /* UITextField+MaskSpecialChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9BB721219BA19700615AC5 /* UITextField+MaskSpecialChars.swift */; };
 		9D9BB724219BA1AF00615AC5 /* UITextField+Maskeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9BB723219BA1AF00615AC5 /* UITextField+Maskeable.swift */; };
+		BA7D670A22D14ACB00384A4A /* UITextField_Mask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D9BB713219BA03D00615AC5 /* UITextField_Mask.framework */; };
+		BA7D671222D17C7C00384A4A /* MaskBaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D671122D17C7C00384A4A /* MaskBaseTest.swift */; };
+		BA7D671522D17E6100384A4A /* NumberMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D671422D17E6100384A4A /* NumberMaskTests.swift */; };
+		BA7D671722D180FE00384A4A /* DecimalNumberMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D671622D180FE00384A4A /* DecimalNumberMaskTests.swift */; };
+		BA7D671922D1812800384A4A /* ZIPCodeMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D671822D1812800384A4A /* ZIPCodeMaskTests.swift */; };
+		BA7D671B22D1813800384A4A /* TelephoneMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D671A22D1813800384A4A /* TelephoneMaskTests.swift */; };
+		BA7D671D22D1814300384A4A /* CellphoneMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D671C22D1814300384A4A /* CellphoneMaskTests.swift */; };
+		BA7D671F22D1816500384A4A /* USTelephoneMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D671E22D1816500384A4A /* USTelephoneMaskTests.swift */; };
+		BA7D672122D1836E00384A4A /* DateEndingWithYearMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D672022D1836D00384A4A /* DateEndingWithYearMaskTests.swift */; };
+		BA7D672322D1838D00384A4A /* DateStartingWithYearMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D672222D1838D00384A4A /* DateStartingWithYearMaskTests.swift */; };
+		BA7D672522D183A100384A4A /* TimeWithSecondsMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D672422D183A100384A4A /* TimeWithSecondsMaskTests.swift */; };
+		BA7D672722D183AC00384A4A /* TimeWithoutSecondsMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D672622D183AC00384A4A /* TimeWithoutSecondsMaskTests.swift */; };
+		BA7D672922D183BB00384A4A /* CPFNumberMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D672822D183BB00384A4A /* CPFNumberMaskTests.swift */; };
+		BA7D672B22D183C600384A4A /* CNPJNumberMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D672A22D183C600384A4A /* CNPJNumberMaskTests.swift */; };
+		BA7D672D22D1840D00384A4A /* CustomMaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7D672C22D1840D00384A4A /* CustomMaskTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BA7D670B22D14ACB00384A4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D9BB70A219BA03C00615AC5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D9BB712219BA03D00615AC5;
+			remoteInfo = "UITextField-Mask";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9D70BEFE21C82DD8001E39FB /* UITextField+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Observer.swift"; sourceTree = "<group>"; };
@@ -22,6 +47,22 @@
 		9D9BB71F219BA10800615AC5 /* UITextField+Mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Mask.swift"; sourceTree = "<group>"; };
 		9D9BB721219BA19700615AC5 /* UITextField+MaskSpecialChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+MaskSpecialChars.swift"; sourceTree = "<group>"; };
 		9D9BB723219BA1AF00615AC5 /* UITextField+Maskeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Maskeable.swift"; sourceTree = "<group>"; };
+		BA7D670522D14ACB00384A4A /* UITextField-MaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UITextField-MaskTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7D670922D14ACB00384A4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA7D671122D17C7C00384A4A /* MaskBaseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskBaseTest.swift; sourceTree = "<group>"; };
+		BA7D671422D17E6100384A4A /* NumberMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberMaskTests.swift; sourceTree = "<group>"; };
+		BA7D671622D180FE00384A4A /* DecimalNumberMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalNumberMaskTests.swift; sourceTree = "<group>"; };
+		BA7D671822D1812800384A4A /* ZIPCodeMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZIPCodeMaskTests.swift; sourceTree = "<group>"; };
+		BA7D671A22D1813800384A4A /* TelephoneMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TelephoneMaskTests.swift; sourceTree = "<group>"; };
+		BA7D671C22D1814300384A4A /* CellphoneMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellphoneMaskTests.swift; sourceTree = "<group>"; };
+		BA7D671E22D1816500384A4A /* USTelephoneMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USTelephoneMaskTests.swift; sourceTree = "<group>"; };
+		BA7D672022D1836D00384A4A /* DateEndingWithYearMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateEndingWithYearMaskTests.swift; sourceTree = "<group>"; };
+		BA7D672222D1838D00384A4A /* DateStartingWithYearMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStartingWithYearMaskTests.swift; sourceTree = "<group>"; };
+		BA7D672422D183A100384A4A /* TimeWithSecondsMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWithSecondsMaskTests.swift; sourceTree = "<group>"; };
+		BA7D672622D183AC00384A4A /* TimeWithoutSecondsMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWithoutSecondsMaskTests.swift; sourceTree = "<group>"; };
+		BA7D672822D183BB00384A4A /* CPFNumberMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPFNumberMaskTests.swift; sourceTree = "<group>"; };
+		BA7D672A22D183C600384A4A /* CNPJNumberMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CNPJNumberMaskTests.swift; sourceTree = "<group>"; };
+		BA7D672C22D1840D00384A4A /* CustomMaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMaskTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +73,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA7D670222D14ACB00384A4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7D670A22D14ACB00384A4A /* UITextField_Mask.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -39,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				9D9BB715219BA03D00615AC5 /* UITextField-Mask */,
+				BA7D670622D14ACB00384A4A /* UITextField-MaskTests */,
 				9D9BB714219BA03D00615AC5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				9D9BB713219BA03D00615AC5 /* UITextField_Mask.framework */,
+				BA7D670522D14ACB00384A4A /* UITextField-MaskTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				9D9BB71E219BA0F400615AC5 /* Classes */,
-				9D9BB716219BA03D00615AC5 /* UITextField_Mask.h */,
 				9D9BB717219BA03D00615AC5 /* Info.plist */,
+				9D9BB716219BA03D00615AC5 /* UITextField_Mask.h */,
 			);
 			path = "UITextField-Mask";
 			sourceTree = "<group>";
@@ -70,6 +121,44 @@
 				9D70BEFE21C82DD8001E39FB /* UITextField+Observer.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		BA7D670622D14ACB00384A4A /* UITextField-MaskTests */ = {
+			isa = PBXGroup;
+			children = (
+				BA7D671022D17C3400384A4A /* Base */,
+				BA7D670922D14ACB00384A4A /* Info.plist */,
+				BA7D671322D17E2A00384A4A /* MaskTests */,
+			);
+			path = "UITextField-MaskTests";
+			sourceTree = "<group>";
+		};
+		BA7D671022D17C3400384A4A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BA7D671122D17C7C00384A4A /* MaskBaseTest.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		BA7D671322D17E2A00384A4A /* MaskTests */ = {
+			isa = PBXGroup;
+			children = (
+				BA7D671C22D1814300384A4A /* CellphoneMaskTests.swift */,
+				BA7D672A22D183C600384A4A /* CNPJNumberMaskTests.swift */,
+				BA7D672822D183BB00384A4A /* CPFNumberMaskTests.swift */,
+				BA7D672C22D1840D00384A4A /* CustomMaskTests.swift */,
+				BA7D672022D1836D00384A4A /* DateEndingWithYearMaskTests.swift */,
+				BA7D672222D1838D00384A4A /* DateStartingWithYearMaskTests.swift */,
+				BA7D671622D180FE00384A4A /* DecimalNumberMaskTests.swift */,
+				BA7D671422D17E6100384A4A /* NumberMaskTests.swift */,
+				BA7D671A22D1813800384A4A /* TelephoneMaskTests.swift */,
+				BA7D672622D183AC00384A4A /* TimeWithoutSecondsMaskTests.swift */,
+				BA7D672422D183A100384A4A /* TimeWithSecondsMaskTests.swift */,
+				BA7D671E22D1816500384A4A /* USTelephoneMaskTests.swift */,
+				BA7D671822D1812800384A4A /* ZIPCodeMaskTests.swift */,
+			);
+			path = MaskTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,18 +193,40 @@
 			productReference = 9D9BB713219BA03D00615AC5 /* UITextField_Mask.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		BA7D670422D14ACB00384A4A /* UITextField-MaskTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA7D670D22D14ACB00384A4A /* Build configuration list for PBXNativeTarget "UITextField-MaskTests" */;
+			buildPhases = (
+				BA7D670122D14ACB00384A4A /* Sources */,
+				BA7D670222D14ACB00384A4A /* Frameworks */,
+				BA7D670322D14ACB00384A4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA7D670C22D14ACB00384A4A /* PBXTargetDependency */,
+			);
+			name = "UITextField-MaskTests";
+			productName = "UITextField-MaskTests";
+			productReference = BA7D670522D14ACB00384A4A /* UITextField-MaskTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		9D9BB70A219BA03C00615AC5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Rafael Ribeiro da Silva";
 				TargetAttributes = {
 					9D9BB712219BA03D00615AC5 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+					};
+					BA7D670422D14ACB00384A4A = {
+						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
 			};
@@ -133,12 +244,20 @@
 			projectRoot = "";
 			targets = (
 				9D9BB712219BA03D00615AC5 /* UITextField-Mask */,
+				BA7D670422D14ACB00384A4A /* UITextField-MaskTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9D9BB711219BA03D00615AC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA7D670322D14ACB00384A4A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -159,7 +278,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA7D670122D14ACB00384A4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA7D671F22D1816500384A4A /* USTelephoneMaskTests.swift in Sources */,
+				BA7D672B22D183C600384A4A /* CNPJNumberMaskTests.swift in Sources */,
+				BA7D672922D183BB00384A4A /* CPFNumberMaskTests.swift in Sources */,
+				BA7D671522D17E6100384A4A /* NumberMaskTests.swift in Sources */,
+				BA7D671222D17C7C00384A4A /* MaskBaseTest.swift in Sources */,
+				BA7D671D22D1814300384A4A /* CellphoneMaskTests.swift in Sources */,
+				BA7D671B22D1813800384A4A /* TelephoneMaskTests.swift in Sources */,
+				BA7D671722D180FE00384A4A /* DecimalNumberMaskTests.swift in Sources */,
+				BA7D672322D1838D00384A4A /* DateStartingWithYearMaskTests.swift in Sources */,
+				BA7D672722D183AC00384A4A /* TimeWithoutSecondsMaskTests.swift in Sources */,
+				BA7D672522D183A100384A4A /* TimeWithSecondsMaskTests.swift in Sources */,
+				BA7D671922D1812800384A4A /* ZIPCodeMaskTests.swift in Sources */,
+				BA7D672122D1836E00384A4A /* DateEndingWithYearMaskTests.swift in Sources */,
+				BA7D672D22D1840D00384A4A /* CustomMaskTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BA7D670C22D14ACB00384A4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D9BB712219BA03D00615AC5 /* UITextField-Mask */;
+			targetProxy = BA7D670B22D14ACB00384A4A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9D9BB719219BA03D00615AC5 /* Debug */ = {
@@ -341,6 +489,42 @@
 			};
 			name = Release;
 		};
+		BA7D670E22D14ACB00384A4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "UITextField-MaskTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rafaelrsilva.UITextField-MaskTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BA7D670F22D14ACB00384A4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "UITextField-MaskTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rafaelrsilva.UITextField-MaskTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -358,6 +542,15 @@
 			buildConfigurations = (
 				9D9BB71C219BA03D00615AC5 /* Debug */,
 				9D9BB71D219BA03D00615AC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA7D670D22D14ACB00384A4A /* Build configuration list for PBXNativeTarget "UITextField-MaskTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA7D670E22D14ACB00384A4A /* Debug */,
+				BA7D670F22D14ACB00384A4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
