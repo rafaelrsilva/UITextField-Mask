@@ -10,5 +10,5 @@ import XCTest
 import UIKit
 
 final class CustomMaskTests: MaskBaseTest {
-
+    
 }

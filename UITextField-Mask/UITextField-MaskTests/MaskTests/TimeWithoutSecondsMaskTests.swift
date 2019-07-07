@@ -15,4 +15,16 @@ final class TimeWithoutSecondsMaskTests: MaskBaseTest {
         super.setUp()
         field.maskField(with: .timeWithoutSeconds)
     }
+    
+    func testUsingValidInput() {
+        field.text = "2358"
+        XCTAssertEqual(field.text, "23:58", "Input masked incorrectly")
+        XCTAssertEqual(field.unmaskedText, "2358", "Field value unmasked incorrectly")
+    }
+    
+    func testUsingValidMaskedInput() {
+        field.text = "23:58"
+        XCTAssertEqual(field.text, "23:58", "Input masked incorrectly")
+        XCTAssertEqual(field.unmaskedText, "2358", "Field value unmasked incorrectly")
+    }
 }

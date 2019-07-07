@@ -15,4 +15,16 @@ final class CNPJNumberMaskTests: MaskBaseTest {
         super.setUp()
         field.maskField(with: .cnpjNumber)
     }
+    
+    func testUsingValidInput() {
+        field.text = "90919856000158"
+        XCTAssertEqual(field.text, "90.919.856/0001-58", "Input masked incorrectly")
+        XCTAssertEqual(field.unmaskedText, "90919856000158", "Field value unmasked incorrectly")
+    }
+    
+    func testUsingValidMaskedInput() {
+        field.text = "90.919.856/0001-58"
+        XCTAssertEqual(field.text, "90.919.856/0001-58", "Input masked incorrectly")
+        XCTAssertEqual(field.unmaskedText, "90919856000158", "Field value unmasked incorrectly")
+    }
 }

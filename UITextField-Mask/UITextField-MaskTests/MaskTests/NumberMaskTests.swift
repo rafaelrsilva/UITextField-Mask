@@ -15,4 +15,10 @@ final class NumberMaskTests: MaskBaseTest {
         super.setUp()
         field.maskField(with: .number)
     }
+    
+    func testUsingValidInput() {
+        field.text = "123456"
+        XCTAssertEqual(field.text, "123456", "Input masked incorrectly")
+        XCTAssertEqual(field.unmaskedText, "123456", "Field value unmasked incorrectly")
+    }
 }

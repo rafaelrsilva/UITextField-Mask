@@ -15,4 +15,16 @@ final class DateEndingWithYearMaskTests: MaskBaseTest {
         super.setUp()
         field.maskField(with: .dateEndingWithYear)
     }
+    
+    func testUsingValidInput() {
+        field.text = "06072019"
+        XCTAssertEqual(field.text, "06/07/2019", "Input masked incorrectly")
+        XCTAssertEqual(field.unmaskedText, "06072019", "Field value unmasked incorrectly")
+    }
+    
+    func testUsingValidMaskedInput() {
+        field.text = "06/07/2019"
+        XCTAssertEqual(field.text, "06/07/2019", "Input masked incorrectly")
+        XCTAssertEqual(field.unmaskedText, "06072019", "Field value unmasked incorrectly")
+    }
 }
