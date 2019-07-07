@@ -53,22 +53,22 @@ public extension UITextField {
         /**
          Represents a mask for a date: **00/00/0000**
          */
-        case dayMonthYear
+        case dateEndingWithYear
         
         /**
          Represents a mask for a date: **0000/00/00**
          */
-        case yearMonthDay
+        case dateStartingWithYear
         
         /**
          Represents a mask for a time: **00:00:00**
          */
-        case hoursMinutesSeconds
+        case timeWithSeconds
         
         /**
          Represents a mask for a time without seconds: **00:00**
          */
-        case hoursMinites
+        case timeWithoutSeconds
         
         /**
          Represents a mask for a brazilian CPF document number: **000.000.000-00**
@@ -103,17 +103,17 @@ public extension UITextField {
                 
                 case .usTelephone:
                     return "(000) 000-0000"
-                
-                case .dayMonthYear:
-                    return "00/00/0000"
-                
-                case .yearMonthDay:
+               
+                case .dateStartingWithYear:
                     return "0000/00/00"
                 
-                case .hoursMinutesSeconds:
+                case .dateEndingWithYear:
+                    return "00/00/0000"
+                
+                case .timeWithSeconds:
                     return "00:00:00"
                 
-                case .hoursMinites:
+                case .timeWithoutSeconds:
                     return "00:00"
                 
                 case .cpfNumber:
