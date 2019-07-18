@@ -13,7 +13,7 @@ public extension UITextField {
     /**
      Represents a mask format
      */
-    public enum Mask {
+    enum Mask {
         
         /**
          Represents no mask
